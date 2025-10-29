@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Header with Thick 3V Symbol</title>
+<style>
+  body {
+    margin: 0;
+    background: #0f1724;
+    font-family: system-ui, sans-serif;
+    color: white;
+  }
+
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 16px 32px;
+    background: #121c2b;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  }
+
+  .symbol {
+    position: relative;
+    width: 70px;
+    height: 70px;
+    margin-right: 16px;
+  }
+
+  .v {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform-origin: center center;
+  }
+
+  /* Increased thickness and length of bars */
+  .bar {
+    position: absolute;
+    width: 12px;
+    height: 45px;
+    background: linear-gradient(to bottom, #ffffff, #e8e8e8);
+    border-radius: 10px;
+    transform-origin: bottom center;
+    box-shadow: 0 2px 6px rgba(255, 255, 255, 0.25);
+  }
+
+  .bar.left {
+    transform: rotate(40deg) translateY(-3px);
+  }
+  .bar.right {
+    transform: rotate(-40deg) translateY(-3px);
+  }
+
+  .v:nth-child(1) { transform: translate(-50%, -50%) rotate(0deg); }
+  .v:nth-child(2) { transform: translate(-50%, -50%) rotate(120deg); }
+  .v:nth-child(3) { transform: translate(-50%, -50%) rotate(240deg); }
+
+  .symbol::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.05);
+  }
+
+  h1 {
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin: 0;
+    letter-spacing: 0.5px;
+  }
+</style>
+</head>
+<body>
+  <header>
+    <div class="symbol">
+      <div class="v">
+        <div class="bar left"></div>
+        <div class="bar right"></div>
+      </div>
+      <div class="v">
+        <div class="bar left"></div>
+        <div class="bar right"></div>
+      </div>
+      <div class="v">
+        <div class="bar left"></div>
+        <div class="bar right"></div>
+      </div>
+    </div>
+    <h1>My Website</h1>
+  </header>
+</body>
+</html>
