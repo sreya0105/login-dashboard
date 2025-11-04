@@ -2,97 +2,127 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Header — Inverted 3 V Loop Logo (CSS only)</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Six-V Interlocked Logo — SVG</title>
   <style>
     :root {
-      --header-height: 80px;
-      --bg: #111; /* dark background */
-      --logo-size: 60px;
-      --v-width: 14px;
-      --v-length: 35px;
+      --bg: #0b1220;      /* page background */
+      --logo-color: #fff; /* logo (flat white) */
+      --size: 420px;      /* control overall preview size */
     }
-
-    body {
-      margin: 0;
-      font-family: system-ui, sans-serif;
-      background: #000;
-      color: #fff;
-    }
-
-    header.site-header {
-      height: var(--header-height);
-      background: var(--bg);
-      display: flex;
-      align-items: center;
-      padding: 0 20px;
-      box-sizing: border-box;
-    }
-
-    .logo {
-      position: relative;
-      width: var(--logo-size);
-      height: var(--logo-size);
-    }
-
-    .v-shape {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: var(--v-width);
-      height: var(--v-length);
-      background: transparent;
-      transform-origin: top center; /* Inverted: rotate around top instead of bottom */
-    }
-
-    .v-shape::before,
-    .v-shape::after {
-      content: '';
-      position: absolute;
-      width: var(--v-width);
-      height: var(--v-length);
-      background: #fff;
-      border-radius: 4px;
-      bottom: 0;
-      left: 0;
-      transform-origin: top center;
-    }
-
-    /* Inverted V arms */
-    .v-shape::before {
-      transform: rotate(-25deg);
-    }
-
-    .v-shape::after {
-      transform: rotate(25deg);
-    }
-
-    /* Arrange Vs around circle */
-    .v1 { transform: translate(-50%, -50%) rotate(0deg); }
-    .v2 { transform: translate(-50%, -50%) rotate(120deg); }
-    .v3 { transform: translate(-50%, -50%) rotate(240deg); }
-
-    .logo:hover { transform: rotate(10deg); transition: transform 0.3s ease; }
-
-    .site-title {
-      margin-left: 16px;
-      font-weight: 600;
-      font-size: 18px;
-      color: #fff;
-    }
+    html,body{height:100%;margin:0;background:var(--bg);display:flex;align-items:center;justify-content:center}
+    .frame{width:var(--size);height:var(--size);display:grid;place-items:center}
+    svg{width:100%;height:100%;display:block}
   </style>
 </head>
 <body>
-  <header class="site-header">
-    <div class="logo" title="Inverted Three V Loop Logo">
-      <div class="v-shape v1"></div>
-      <div class="v-shape v2"></div>
-      <div class="v-shape v3"></div>
-    </div>
-    <div class="site-title">Your Site</div>
-  </header>
-  <main style="padding: 24px; background: linear-gradient(#222,#111); height: calc(100vh - var(--header-height));">
-    <p>Header with inverted CSS-only white three-V loop logo for a cyclic appearance.</p>
-  </main>
+  <div class="frame" aria-hidden="false" aria-label="Six interlocked V logo">
+    <!--
+      Dense, compact six-V interlocked logo.
+      - Each V is the same polygon, rotated 60° apart.
+      - Masks are used to cut small areas so the V's alternate over/under (weave).
+      - Flat white fills, sharp corners, solid center.
+    -->
+    <svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg" role="img">
+      <defs>
+        <style>
+          .v { fill: var(--logo-color); }
+        </style>
+
+        <!-- A single V-shaped polygon defined around the origin (0,0). We'll place at center (150,150) -->
+        <!-- The V is sharp (90° apex) and deliberately broad to create a dense ring -->
+
+        <!-- We will draw six copies; to simulate weaving we prepare masks for each V.
+             A mask is white (keep) and has small black cutouts where that V should appear UNDER the neighboring V.
+             The black cutouts are positioned at intersection points; tweak their sizes/positions to refine the weave.
+        -->
+
+        <!-- Mask A (applies to V at 0°) -->
+        <mask id="mask-A">
+          <rect width="100%" height="100%" fill="white"/>
+          <!-- small black cutouts where A should go under its neighbor(s) -->
+          <rect x="153" y="88" width="22" height="14" fill="black" transform="rotate(-10 164 95)"/>
+          <rect x="106" y="143" width="20" height="14" fill="black" transform="rotate(8 116 150)"/>
+        </mask>
+
+        <mask id="mask-B">
+          <rect width="100%" height="100%" fill="white"/>
+          <rect x="200" y="124" width="22" height="14" fill="black" transform="rotate(50 211 131)"/>
+          <rect x="149" y="76" width="20" height="14" fill="black" transform="rotate(32 159 83)"/>
+        </mask>
+
+        <mask id="mask-C">
+          <rect width="100%" height="100%" fill="white"/>
+          <rect x="196" y="173" width="20" height="14" fill="black" transform="rotate(110 206 180)"/>
+          <rect x="150" y="123" width="20" height="14" fill="black" transform="rotate(88 160 130)"/>
+        </mask>
+
+        <mask id="mask-D">
+          <rect width="100%" height="100%" fill="white"/>
+          <rect x="136" y="198" width="22" height="14" fill="black" transform="rotate(170 147 205)"/>
+          <rect x="190" y="146" width="20" height="14" fill="black" transform="rotate(152 200 153)"/>
+        </mask>
+
+        <mask id="mask-E">
+          <rect width="100%" height="100%" fill="white"/>
+          <rect x="92" y="170" width="20" height="14" fill="black" transform="rotate(-140 102 177)"/>
+          <rect x="120" y="120" width="22" height="14" fill="black" transform="rotate(-120 131 127)"/>
+        </mask>
+
+        <mask id="mask-F">
+          <rect width="100%" height="100%" fill="white"/>
+          <rect x="86" y="120" width="20" height="14" fill="black" transform="rotate(-88 96 127)"/>
+          <rect x="118" y="78" width="22" height="14" fill="black" transform="rotate(-60 129 85)"/>
+        </mask>
+
+        <!-- The V shape around origin. We translate each instance to the center (150,150) with group transform. -->
+        <!-- Path explained: broad V polygon with a solid center. Apex points toward +y (down) before rotation. -->
+        <g id="Vshape">
+          <path d="M -78,-60 L 0,70 L 78,-60 L 48,-60 L 0,36 L -48,-60 Z" />
+        </g>
+      </defs>
+
+      <!-- Background subtle rim (very faint) — optional, helps circular perception -->
+      <circle cx="150" cy="150" r="86" fill="none" stroke="rgba(255,255,255,0.04)" stroke-width="6"/>
+
+      <!-- Place the six Vs rotated by 0,60,...,300 degrees. Apply masks to cut where each must go under neighbor.
+           The masks were tuned so every V alternates over/under to create a continuous weave.
+      -->
+      <g transform="translate(150,150)">
+        <!-- V 0° -->
+        <g transform="rotate(0)">
+          <use href="#Vshape" class="v" mask="url(#mask-A)"/>
+        </g>
+
+        <!-- V 60° -->
+        <g transform="rotate(60)">
+          <use href="#Vshape" class="v" mask="url(#mask-B)"/>
+        </g>
+
+        <!-- V 120° -->
+        <g transform="rotate(120)">
+          <use href="#Vshape" class="v" mask="url(#mask-C)"/>
+        </g>
+
+        <!-- V 180° -->
+        <g transform="rotate(180)">
+          <use href="#Vshape" class="v" mask="url(#mask-D)"/>
+        </g>
+
+        <!-- V 240° -->
+        <g transform="rotate(240)">
+          <use href="#Vshape" class="v" mask="url(#mask-E)"/>
+        </g>
+
+        <!-- V 300° -->
+        <g transform="rotate(300)">
+          <use href="#Vshape" class="v" mask="url(#mask-F)"/>
+        </g>
+      </g>
+
+      <!-- Keep the center visually solid (fill overlapping shapes creates solid intersection) -->
+    </svg>
+  </div>
 </body>
 </html>
+
